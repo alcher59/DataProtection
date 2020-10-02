@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.maskedTextBox_y = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox_x = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox_enc = new System.Windows.Forms.TextBox();
             this.btn_enc = new System.Windows.Forms.Button();
-            this.textBox_dec = new System.Windows.Forms.TextBox();
+            this.textBox_enc = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_dec = new System.Windows.Forms.Button();
+            this.textBox_dec = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBox_crypt = new System.Windows.Forms.TextBox();
-            this.maskedTextBox_x = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox_y = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -60,14 +60,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Простые числа";
             // 
-            // label1
+            // maskedTextBox_y
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(15, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "x:";
+            this.maskedTextBox_y.Location = new System.Drawing.Point(38, 65);
+            this.maskedTextBox_y.Mask = "0000000000000000";
+            this.maskedTextBox_y.Name = "maskedTextBox_y";
+            this.maskedTextBox_y.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBox_y.TabIndex = 4;
+            this.maskedTextBox_y.Text = "7";
+            // 
+            // maskedTextBox_x
+            // 
+            this.maskedTextBox_x.Location = new System.Drawing.Point(38, 33);
+            this.maskedTextBox_x.Mask = "0000000000000000";
+            this.maskedTextBox_x.Name = "maskedTextBox_x";
+            this.maskedTextBox_x.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBox_x.TabIndex = 4;
+            this.maskedTextBox_x.Text = "5";
             // 
             // label2
             // 
@@ -77,6 +86,15 @@
             this.label2.Size = new System.Drawing.Size(15, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "y:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(15, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "x:";
             // 
             // groupBox2
             // 
@@ -89,6 +107,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Шифрование";
             // 
+            // btn_enc
+            // 
+            this.btn_enc.Location = new System.Drawing.Point(447, 135);
+            this.btn_enc.Name = "btn_enc";
+            this.btn_enc.Size = new System.Drawing.Size(75, 37);
+            this.btn_enc.TabIndex = 1;
+            this.btn_enc.Text = "OK";
+            this.btn_enc.UseVisualStyleBackColor = true;
+            this.btn_enc.Click += new System.EventHandler(this.btn_enc_Click);
+            // 
+            // textBox_enc
+            // 
+            this.textBox_enc.Location = new System.Drawing.Point(7, 20);
+            this.textBox_enc.Multiline = true;
+            this.textBox_enc.Name = "textBox_enc";
+            this.textBox_enc.Size = new System.Drawing.Size(515, 109);
+            this.textBox_enc.TabIndex = 0;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btn_dec);
@@ -100,32 +136,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Дешифрование";
             // 
-            // textBox_enc
-            // 
-            this.textBox_enc.Location = new System.Drawing.Point(7, 20);
-            this.textBox_enc.Multiline = true;
-            this.textBox_enc.Name = "textBox_enc";
-            this.textBox_enc.Size = new System.Drawing.Size(515, 109);
-            this.textBox_enc.TabIndex = 0;
-            // 
-            // btn_enc
-            // 
-            this.btn_enc.Location = new System.Drawing.Point(447, 135);
-            this.btn_enc.Name = "btn_enc";
-            this.btn_enc.Size = new System.Drawing.Size(75, 37);
-            this.btn_enc.TabIndex = 1;
-            this.btn_enc.Text = "OK";
-            this.btn_enc.UseVisualStyleBackColor = true;
-            this.btn_enc.Click += new System.EventHandler(this.btn_enc_Click);
-            // 
-            // textBox_dec
-            // 
-            this.textBox_dec.Location = new System.Drawing.Point(6, 19);
-            this.textBox_dec.Multiline = true;
-            this.textBox_dec.Name = "textBox_dec";
-            this.textBox_dec.Size = new System.Drawing.Size(515, 109);
-            this.textBox_dec.TabIndex = 1;
-            // 
             // btn_dec
             // 
             this.btn_dec.Location = new System.Drawing.Point(446, 134);
@@ -135,6 +145,14 @@
             this.btn_dec.Text = "OK";
             this.btn_dec.UseVisualStyleBackColor = true;
             this.btn_dec.Click += new System.EventHandler(this.btn_dec_Click);
+            // 
+            // textBox_dec
+            // 
+            this.textBox_dec.Location = new System.Drawing.Point(6, 19);
+            this.textBox_dec.Multiline = true;
+            this.textBox_dec.Name = "textBox_dec";
+            this.textBox_dec.Size = new System.Drawing.Size(515, 109);
+            this.textBox_dec.TabIndex = 1;
             // 
             // groupBox4
             // 
@@ -155,24 +173,6 @@
             this.textBox_crypt.Size = new System.Drawing.Size(161, 229);
             this.textBox_crypt.TabIndex = 0;
             // 
-            // maskedTextBox_x
-            // 
-            this.maskedTextBox_x.Location = new System.Drawing.Point(38, 33);
-            this.maskedTextBox_x.Mask = "0000000000000000";
-            this.maskedTextBox_x.Name = "maskedTextBox_x";
-            this.maskedTextBox_x.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox_x.TabIndex = 4;
-            this.maskedTextBox_x.Text = "5";
-            // 
-            // maskedTextBox_y
-            // 
-            this.maskedTextBox_y.Location = new System.Drawing.Point(38, 65);
-            this.maskedTextBox_y.Mask = "0000000000000000";
-            this.maskedTextBox_y.Name = "maskedTextBox_y";
-            this.maskedTextBox_y.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox_y.TabIndex = 4;
-            this.maskedTextBox_y.Text = "7";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,7 +183,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Diffie-Hellman";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
