@@ -50,7 +50,7 @@ namespace Vernam
                         t[i, j] = 0;
                 }
             }
-            for (int i = 0; i < key.Length; i++)
+            for (int i = 0; i < key.Length/8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
@@ -60,7 +60,7 @@ namespace Vernam
                         k[i, j] = 0;
                 }
             }
-            for (int i = 0; i < t.Length; i++)
+            for (int i = 0; i < t.Length/8; i++)
             {
                 for (int j = 0; j < 8; j++)
                     if (t[i,j] != k[i,j])
@@ -89,7 +89,9 @@ namespace Vernam
             Console.WriteLine("Введите ключ такой же длины: ");
             string key = Console.ReadLine();
 
-            Console.WriteLine(encoding(ConvertToUni(text), ConvertToUni(key)));
+            var result = encoding(ConvertToUni(text), ConvertToUni(key));
+            foreach(var i in result)
+                Console.Write(i);
 
 
             //var a = text.ToCharArray().Select(i => Convert.ToString(i, 2));
