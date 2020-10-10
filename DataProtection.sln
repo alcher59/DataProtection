@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSA", "RSA\RSA.csproj", "{4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffie-Hellman", "Diffie-Hellman\Diffie-Hellman.csproj", "{BAD64687-C597-470D-A7B0-8445CEF649B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DES", "DES\DES.csproj", "{96CD4842-605A-4370-8373-4D76907C2F1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockEncryption", "DES\BlockEncryption.csproj", "{96CD4842-605A-4370-8373-4D76907C2F1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
