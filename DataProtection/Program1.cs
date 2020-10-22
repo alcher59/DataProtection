@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Vernam
 {
@@ -70,7 +72,48 @@ namespace Vernam
             }
             return res;
         }
-        
+        public static string BinaryToString(string data)
+        {
+            var stringArray = Enumerable.Range(0, data.Length / 8).Select(i => Convert.ToByte(data.Substring(i * 8, 8), 2)).ToArray();
+
+            return Encoding.ASCII.GetString(stringArray);
+        }
+        public static int[,] decoding(string[] text, string[] key)
+        {
+
+            int[,] t = new int[text.Length, 8];
+            int[,] k = new int[text.Length, 8];
+            int[,] res = new int[text.Length, 8];
+            for (int i = 0; i < text.Length; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (text[i][j] == '1')
+                        t[i, j] = 1;
+                    else
+                        t[i, j] = 0;
+                }
+            }
+            for (int i = 0; i < key.Length / 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (key[i][j] == '1')
+                        k[i, j] = 1;
+                    else
+                        k[i, j] = 0;
+                }
+            }
+            for (int i = 0; i < t.Length / 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                    if (t[i, j] != k[i, j])
+                        res[i, j] = 1;
+                    else
+                        res[i, j] = 0;
+            }
+            return res;
+        }
         //public static string ConvertFromUni(string[] arr)
         //{
         //    string result = "";
@@ -90,10 +133,16 @@ namespace Vernam
             string key = Console.ReadLine();
 
             var result = encoding(ConvertToUni(text), ConvertToUni(key));
-            foreach(var i in result)
-                Console.Write(i);
-
-
+            string temp = "";
+            
+            for (int i = 0; i < result.Length / 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    temp += result[i, j].ToString();
+                }
+                Console.Write(BinaryToString(temp) + " ");
+            }
             //var a = text.ToCharArray().Select(i => Convert.ToString(i, 2));
             //foreach (var ch in a)
             //    Console.WriteLine(ch);
@@ -101,6 +150,6 @@ namespace Vernam
 
 
 
-        }
+            }
     }
 }

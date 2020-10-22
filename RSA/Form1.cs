@@ -40,25 +40,28 @@ namespace RSA
                 if (IsTheNumberSimple(p) && IsTheNumberSimple(q))
                 {
                     string s = textBox_in.Text.ToUpper();
-
-                    long n = p * q;
-                    long m = (p - 1) * (q - 1);
-                    long d = Calculate_d(m);
-                    long e_ = Calculate_e(d, m);
-
-                    List<string> result = RSA_Endoce(s, e_, n);
-
-                    textBox_out1.Clear();
-                    foreach (string item in result)
+                    if(s != "")
                     {
-                        if (textBox_out1.Text.Length == 0)
-                            textBox_out1.Text = item;
-                        else
-                            textBox_out1.AppendText("\r\n" + item);
+                        long n = p * q;
+                        long m = (p - 1) * (q - 1);
+                        long d = Calculate_d(m);
+                        long e_ = Calculate_e(d, m);
+
+                        List<string> result = RSA_Endoce(s, e_, n);
+
+                        textBox_out1.Clear();
+                        foreach (string item in result)
+                        {
+                            if (textBox_out1.Text.Length == 0)
+                                textBox_out1.Text = item;
+                            else
+                                textBox_out1.AppendText("\r\n" + item);
+                        }
+
+                        textBox_d.Text = d.ToString();
+                        textBox_n.Text = n.ToString();
                     }
-                        
-                    textBox_d.Text = d.ToString();
-                    textBox_n.Text = n.ToString();
+                   else MessageBox.Show("Введите текст!");
                 }
                 else
                     MessageBox.Show("p или q - не простые числа!");
