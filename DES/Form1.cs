@@ -14,14 +14,14 @@ namespace DES
 {
     public partial class Form1 : Form
     {
-        private const int sizeOfBlock = 128; //в DES размер блока 64 бит, но поскольку в unicode символ в два раза длинее, то увеличим блок тоже в два раза
-        private const int sizeOfChar = 16; //размер одного символа (in Unicode 16 bit)
+        private const int sizeOfBlock = 64; //размер блока 32 бит, но поскольку в unicode символ в два раза длинее, то увеличим блок тоже в два раза
+        private const int sizeOfChar = 16; 
 
         private const int shiftKey = 2; //сдвиг ключа 
 
-        private const int quantityOfRounds = 16; //количество раундов
+        private const int countRounds = 16; //количество раундов
 
-        string[] Blocks; //сами блоки в двоичном формате
+        string[] blocks; //блоки в двоичном формате
 
         public Form1()
         {
@@ -33,22 +33,23 @@ namespace DES
             {
                 if (textBox_enc.Text.Length > 0)
                 {
-                    string s = textBox_enc.Text;
+                    string str = textBox_enc.Text;
 
                     string key = textBoxEncodeKeyWord.Text;
 
-                    s = StringToRightLength(s);
+                    str = StringToRightLength(str);
 
-                    CutStringIntoBlocks(s);
+                    CutStringIntoBlocks(str);
 
-                    key = CorrectKeyWord(key, s.Length / (2 * Blocks.Length));
+                    key = CorrectKeyWord(key, str.Length / (2 * blocks.Length));
                     textBoxEncodeKeyWord.Text = key;
                     key = StringToBinaryFormat(key);
 
-                    for (int j = 0; j < quantityOfRounds; j++)
+                    //сеть фейстеля
+                    for (int j = 0; j < countRounds; j++)
                     {
-                        for (int i = 0; i < Blocks.Length; i++)
-                            Blocks[i] = EncodeDES_One_Round(Blocks[i], key);
+                        for (int i = 0; i < blocks.Length; i++)
+                            blocks[i] = EncodeRound(blocks[i], key);
 
                         key = KeyToNextRound(key);
                     }
@@ -59,8 +60,8 @@ namespace DES
 
                     string result = "";
 
-                    for (int i = 0; i < Blocks.Length; i++)
-                        result += Blocks[i];
+                    for (int i = 0; i < blocks.Length; i++)
+                        result += blocks[i];
 
                     textBox_code.Text = StringFromBinaryToNormalFormat(result);
                 }
@@ -75,18 +76,18 @@ namespace DES
         {
             if (textBoxDecodeKeyWord.Text.Length > 0)
             {
-                string s = textBox_code.Text;
+                string str = textBox_code.Text;
 
                 string key = StringToBinaryFormat(textBoxDecodeKeyWord.Text);
 
-                s = StringToBinaryFormat(s);
+                str = StringToBinaryFormat(str);
 
-                CutBinaryStringIntoBlocks(s);
+                CutBinaryStringIntoBlocks(str);
 
-                for (int j = 0; j < quantityOfRounds; j++)
+                for (int j = 0; j < countRounds; j++)
                 {
-                    for (int i = 0; i < Blocks.Length; i++)
-                        Blocks[i] = DecodeDES_One_Round(Blocks[i], key);
+                    for (int i = 0; i < blocks.Length; i++)
+                        blocks[i] = DecodeRound(blocks[i], key);
 
                     key = KeyToPrevRound(key);
                 }
@@ -97,8 +98,8 @@ namespace DES
 
                 string result = "";
 
-                for (int i = 0; i < Blocks.Length; i++)
-                    result += Blocks[i];
+                for (int i = 0; i < blocks.Length; i++)
+                    result += blocks[i];
 
                 textBox_dec.Text = StringFromBinaryToNormalFormat(result);
             }
@@ -118,26 +119,26 @@ namespace DES
         //разбиение обычной строки на блоки
         private void CutStringIntoBlocks(string input)
         {
-            Blocks = new string[(input.Length * sizeOfChar) / sizeOfBlock];
+            blocks = new string[(input.Length * sizeOfChar) / sizeOfBlock];
 
-            int lengthOfBlock = input.Length / Blocks.Length;
+            int lengthOfBlock = input.Length / blocks.Length;
 
-            for (int i = 0; i < Blocks.Length; i++)
+            for (int i = 0; i < blocks.Length; i++)
             {
-                Blocks[i] = input.Substring(i * lengthOfBlock, lengthOfBlock);
-                Blocks[i] = StringToBinaryFormat(Blocks[i]);
+                blocks[i] = input.Substring(i * lengthOfBlock, lengthOfBlock);
+                blocks[i] = StringToBinaryFormat(blocks[i]);
             }
         }
 
         //разбиение двоичной строки на блоки
         private void CutBinaryStringIntoBlocks(string input)
         {
-            Blocks = new string[input.Length / sizeOfBlock];
+            blocks = new string[input.Length / sizeOfBlock];
 
-            int lengthOfBlock = input.Length / Blocks.Length;
+            int lengthOfBlock = input.Length / blocks.Length;
 
-            for (int i = 0; i < Blocks.Length; i++)
-                Blocks[i] = input.Substring(i * lengthOfBlock, lengthOfBlock);
+            for (int i = 0; i < blocks.Length; i++)
+                blocks[i] = input.Substring(i * lengthOfBlock, lengthOfBlock);
         }
 
         //перевод строки в двоичный формат
@@ -171,7 +172,7 @@ namespace DES
         }
 
         //шифрование DES один раунд
-        private string EncodeDES_One_Round(string input, string key)
+        private string EncodeRound(string input, string key)
         {
             string L = input.Substring(0, input.Length / 2);
             string R = input.Substring(input.Length / 2, input.Length / 2);
@@ -180,7 +181,7 @@ namespace DES
         }
 
         //расшифровка DES один раунд
-        private string DecodeDES_One_Round(string input, string key)
+        private string DecodeRound(string input, string key)
         {
             string L = input.Substring(0, input.Length / 2);
             string R = input.Substring(input.Length / 2, input.Length / 2);
