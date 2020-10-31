@@ -14,13 +14,10 @@ namespace DES
 {
     public partial class Form1 : Form
     {
-        private const int sizeOfBlock = 64; //размер блока 32 бит, но поскольку в unicode символ в два раза длинее, то увеличим блок тоже в два раза
-        private const int sizeOfChar = 16; 
-
+        private const int blockSize = 64; //размер блока 32 бит(в unicode символ в два раза длинее)
+        private const int charSize = 16; 
         private const int shiftKey = 2; //сдвиг ключа 
-
         private const int countRounds = 16; //количество раундов
-
         string[] blocks; //блоки в двоичном формате
 
         public Form1()
@@ -39,9 +36,9 @@ namespace DES
 
                     str = StringToRightLength(str);
 
-                    CutStringIntoBlocks(str);
+                    CutStringToBlocks(str);
 
-                    key = CorrectKeyWord(key, str.Length / (2 * blocks.Length));
+                    key = CorrectKeyWord(key, blockSize / charSize);
                     textBoxEncodeKeyWord.Text = key;
                     key = StringToBinaryFormat(key);
 
@@ -110,16 +107,16 @@ namespace DES
         //доводим строку до размера, чтобы делилась на sizeOfBlock
         private string StringToRightLength(string input)
         {
-            while (((input.Length * sizeOfChar) % sizeOfBlock) != 0)
+            while (((input.Length * charSize) % blockSize) != 0)
                 input += "#";
 
             return input;
         }
 
-        //разбиение обычной строки на блоки
-        private void CutStringIntoBlocks(string input)
+        //разбиение строки на блоки
+        private void CutStringToBlocks(string input)
         {
-            blocks = new string[(input.Length * sizeOfChar) / sizeOfBlock];
+            blocks = new string[(input.Length * charSize) / blockSize];
 
             int lengthOfBlock = input.Length / blocks.Length;
 
@@ -133,7 +130,7 @@ namespace DES
         //разбиение двоичной строки на блоки
         private void CutBinaryStringIntoBlocks(string input)
         {
-            blocks = new string[input.Length / sizeOfBlock];
+            blocks = new string[input.Length / blockSize];
 
             int lengthOfBlock = input.Length / blocks.Length;
 
@@ -150,7 +147,7 @@ namespace DES
             {
                 string char_binary = Convert.ToString(input[i], 2);
 
-                while (char_binary.Length < sizeOfChar)
+                while (char_binary.Length < charSize)
                     char_binary = "0" + char_binary;
 
                 output += char_binary;
@@ -244,8 +241,8 @@ namespace DES
 
             while (input.Length > 0)
             {
-                string char_binary = input.Substring(0, sizeOfChar);
-                input = input.Remove(0, sizeOfChar);
+                string char_binary = input.Substring(0, charSize);
+                input = input.Remove(0, charSize);
 
                 int a = 0;
                 int degree = char_binary.Length - 1;

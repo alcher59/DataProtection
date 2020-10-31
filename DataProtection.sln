@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffie-Hellman", "Diffie-He
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DES", "DES\DES.csproj", "{DED6FA42-9622-41E1-82DD-BE649CE0778D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorCorrection", "ErrorCorrection\ErrorCorrection.csproj", "{F2F3F3EA-5BA6-4A75-88BB-7AC2D427C6CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DED6FA42-9622-41E1-82DD-BE649CE0778D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DED6FA42-9622-41E1-82DD-BE649CE0778D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DED6FA42-9622-41E1-82DD-BE649CE0778D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2F3F3EA-5BA6-4A75-88BB-7AC2D427C6CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2F3F3EA-5BA6-4A75-88BB-7AC2D427C6CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2F3F3EA-5BA6-4A75-88BB-7AC2D427C6CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2F3F3EA-5BA6-4A75-88BB-7AC2D427C6CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
