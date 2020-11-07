@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DES", "DES\DES.csproj", "{D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorCorrection", "ErrorCorrection\ErrorCorrection.csproj", "{F2F3F3EA-5BA6-4A75-88BB-7AC2D427C6CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LZW", "LZW\LZW.csproj", "{37055342-D4EE-441C-864C-CC18E703BDAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F2F3F3EA-5BA6-4A75-88BB-7AC2D427C6CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2F3F3EA-5BA6-4A75-88BB-7AC2D427C6CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2F3F3EA-5BA6-4A75-88BB-7AC2D427C6CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37055342-D4EE-441C-864C-CC18E703BDAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37055342-D4EE-441C-864C-CC18E703BDAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37055342-D4EE-441C-864C-CC18E703BDAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37055342-D4EE-441C-864C-CC18E703BDAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
