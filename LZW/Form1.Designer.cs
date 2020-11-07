@@ -61,8 +61,9 @@
             this.output1.Location = new System.Drawing.Point(244, 19);
             this.output1.Multiline = true;
             this.output1.Name = "output1";
-            this.output1.Size = new System.Drawing.Size(222, 38);
+            this.output1.Size = new System.Drawing.Size(359, 38);
             this.output1.TabIndex = 3;
+            this.output1.TextChanged += new System.EventHandler(this.output1_TextChanged);
             // 
             // button1
             // 
@@ -84,7 +85,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "Сжать с помощью арифметического кодирования";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.TextChanged += new System.EventHandler(this.button2_TextChanged);
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // output2
             // 
@@ -92,7 +93,7 @@
             this.output2.Location = new System.Drawing.Point(244, 63);
             this.output2.Multiline = true;
             this.output2.Name = "output2";
-            this.output2.Size = new System.Drawing.Size(222, 38);
+            this.output2.Size = new System.Drawing.Size(359, 138);
             this.output2.TabIndex = 6;
             // 
             // groupBox1
@@ -103,7 +104,7 @@
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(16, 67);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(471, 108);
+            this.groupBox1.Size = new System.Drawing.Size(616, 243);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Сжатие";
@@ -112,7 +113,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 196);
+            this.ClientSize = new System.Drawing.Size(704, 421);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.input);
             this.Controls.Add(this.label1);
