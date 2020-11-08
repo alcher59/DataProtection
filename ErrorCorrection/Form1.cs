@@ -76,7 +76,7 @@ namespace ErrorCorrection
 
         public string ErrorCorrection(string str)
         {
-            string res = textBox1.Text;
+            string res = str;
             string e = "";
             for (int j = 0; j < str.Length; j++)
             {
@@ -88,7 +88,7 @@ namespace ErrorCorrection
 
             for (int i = 0; i < str.Length; i++)
             {
-                var polynom_Ri = PolynomsDevision(GetMulti(GetPolynom(textBox1.Text), i), polynom_P);
+                var polynom_Ri = PolynomsDevision(GetMulti(GetPolynom(str), i), polynom_P);
 
                 if (Enumerable.SequenceEqual(polynom_Ri.OrderBy(t => t), polynom_R0.OrderBy(t => t))) //равны ли полиномы
                 {

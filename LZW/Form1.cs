@@ -109,7 +109,7 @@ namespace LZW
                 if(counter != 0)
                 {
                     double prev = section.ElementAt(counter - 1).Value;
-                    section.Add(pair.Key, dict.ElementAt(counter - 1).Value + prev );
+                    section.Add(pair.Key, Math.Round((dict.ElementAt(counter).Value + prev), 2));
                 }
                 else
                 {
