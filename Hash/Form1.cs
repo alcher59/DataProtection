@@ -16,10 +16,11 @@ namespace Hash
         private const int charSize = 16;
         private const int shiftKey = 2; //сдвиг ключа 
         private const int countRounds = 16; //количество раундов
-        string[] blocks; //блоки в двоичном формате
+        //string[] desBlocks; //блоки в двоичном формате
 
-        private const int passBlockSize = 64; //размер блока 32 бит(в unicode символ в два раза длинее)
 
+        private const int passBlockSize = 64; //размер блока 16 бит(в unicode символ в два раза длинее)
+        //string[] passBlocks; //блоки в двоичном формате
 
 
         public Form1()
@@ -33,47 +34,49 @@ namespace Hash
 
             pass = StringToRightLength(pass);
 
-            CutStringToBlocks(pass);
+            string[] passBlocks = CutPassToBlocks(pass);
 
             pass = StringToBinaryFormat(pass);
 
 
             List<string> h = new List<string>();
-            h.Add(StringToBinaryFormat("0000"));
+            h.Add("0000000000000000000000000000000000000000000000000000000000000000");
 
-            for(int i = 0; i < (pass.Length / blockSize); i++)
+            for(int i = 0; i < (pass.Length / passBlockSize); i++)
             {
-                string newH = XOR(h[i], EnCrypt(h[i], blocks[i]));
+                string enc = (EnCrypt(h[i], passBlocks[i]));
+
+                string newH = XOR(h[i], enc);
 
                 h.Add(newH);
             }
 
-            hashBox.Text = StringFromBinaryToNormalFormat(h.Last());
+            hashBox.Text = StringFromBinaryToNormalFormat(h[h.Count - 1]);
         }
 
         public string EnCrypt(string X, string key)
         {
             X = StringToRightLength(X);
 
-            CutStringToBlocks(X);
+            string[] desBlocks = CutBinaryStringIntoBlocks(X);
 
-            key = CorrectKeyWord(key, blockSize / charSize);
+            //key = CorrectKeyWord(key, blockSize / charSize);
 
-            key = StringToBinaryFormat(key);
+            //key = StringToBinaryFormat(key);
 
             //сеть фейстеля
             for (int j = 0; j < countRounds; j++)
             {
-                for (int i = 0; i < blocks.Length; i++)
-                    blocks[i] = EncodeRound(blocks[i], key);
+                for (int i = 0; i < desBlocks.Length; i++)
+                    desBlocks[i] = EncodeRound(desBlocks[i], key);
 
                 key = KeyToNextRound(key);
             }
 
             string result = "";
 
-            for (int i = 0; i < blocks.Length; i++)
-                result += blocks[i];
+            for (int i = 0; i < desBlocks.Length; i++)
+                result += desBlocks[i];
 
             return result;
         }
@@ -88,9 +91,9 @@ namespace Hash
         }
 
         //разбиение строки на блоки
-        private void CutStringToBlocks(string input)
+        private string[] CutStringToBlocks(string input)
         {
-            blocks = new string[(input.Length * charSize) / blockSize];
+            string [] blocks = new string[(input.Length * charSize) / blockSize];
 
             int lengthOfBlock = input.Length / blocks.Length;
 
@@ -99,19 +102,37 @@ namespace Hash
                 blocks[i] = input.Substring(i * lengthOfBlock, lengthOfBlock);
                 blocks[i] = StringToBinaryFormat(blocks[i]);
             }
-        }
 
+            return blocks;
+        } 
         //разбиение двоичной строки на блоки
-        private void CutBinaryStringIntoBlocks(string input)
+        private string[] CutBinaryStringIntoBlocks(string input)
         {
-            blocks = new string[input.Length / blockSize];
+            string[] blocks = new string[input.Length / blockSize];
 
             int lengthOfBlock = input.Length / blocks.Length;
 
             for (int i = 0; i < blocks.Length; i++)
                 blocks[i] = input.Substring(i * lengthOfBlock, lengthOfBlock);
+
+            return blocks;
         }
 
+        //разбиение пароля на блоки
+        private string[] CutPassToBlocks(string input)
+        {
+            string[] blocks = new string[(input.Length * charSize) / passBlockSize];
+
+            int lengthOfBlock = input.Length / blocks.Length;
+
+            for (int i = 0; i < blocks.Length; i++)
+            {
+                blocks[i] = input.Substring(i * lengthOfBlock, lengthOfBlock);
+                blocks[i] = StringToBinaryFormat(blocks[i]);
+            }
+
+            return blocks;
+        }
         //перевод строки в двоичный формат
         private string StringToBinaryFormat(string input)
         {

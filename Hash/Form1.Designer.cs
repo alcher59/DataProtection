@@ -40,7 +40,7 @@
             this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(30, 85);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(303, 23);
+            this.button1.Size = new System.Drawing.Size(159, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Выполнить";
             this.button1.UseVisualStyleBackColor = true;
@@ -58,7 +58,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(189, 20);
+            this.label2.Location = new System.Drawing.Point(367, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 2;
@@ -68,22 +68,22 @@
             // 
             this.passwordBox.Location = new System.Drawing.Point(30, 50);
             this.passwordBox.Name = "passwordBox";
-            this.passwordBox.Size = new System.Drawing.Size(141, 20);
+            this.passwordBox.Size = new System.Drawing.Size(311, 20);
             this.passwordBox.TabIndex = 3;
             this.passwordBox.TextChanged += new System.EventHandler(this.passwordBox_TextChanged);
             // 
             // hashBox
             // 
-            this.hashBox.Location = new System.Drawing.Point(192, 50);
+            this.hashBox.Location = new System.Drawing.Point(370, 50);
             this.hashBox.Name = "hashBox";
-            this.hashBox.Size = new System.Drawing.Size(141, 20);
+            this.hashBox.Size = new System.Drawing.Size(318, 20);
             this.hashBox.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(377, 130);
+            this.ClientSize = new System.Drawing.Size(737, 131);
             this.Controls.Add(this.hashBox);
             this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.label2);
