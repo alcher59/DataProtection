@@ -16,11 +16,7 @@ namespace Hash
         private const int charSize = 16;
         private const int shiftKey = 2; //сдвиг ключа 
         private const int countRounds = 16; //количество раундов
-        //string[] desBlocks; //блоки в двоичном формате
-
-
         private const int passBlockSize = 64; //размер блока 16 бит(в unicode символ в два раза длинее)
-        //string[] passBlocks; //блоки в двоичном формате
 
 
         public Form1()
