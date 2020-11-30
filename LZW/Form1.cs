@@ -15,8 +15,8 @@ namespace LZW
         public Form1()
         {
             InitializeComponent();
-            input.Text = "abacabadabacabae";
-            output1.Text = "ЭТОТ_МЕТОД_ЛУЧШЕ_ХАФФМАНА";
+            //input.Text = "abacabadabacabae";
+            //output1.Text = "ЭТОТ_МЕТОД_ЛУЧШЕ_ХАФФМАНА";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,6 +34,8 @@ namespace LZW
             string curr = "";  //текущий символ
             string next = ""; //следующий символ
 
+            string outStr = "";
+
             int num = 0; //номер элемента в словаре
 
             foreach (var s in inputStr.Distinct())
@@ -49,7 +51,7 @@ namespace LZW
 
                 if(i == inputStr.Length - 1)
                 {
-                    output1.Text += dict.FirstOrDefault(x => x.Value == curr).Key;
+                    outStr += dict.FirstOrDefault(x => x.Value == curr).Key;
                 }
                 else
                 {
@@ -77,6 +79,8 @@ namespace LZW
                     }
                 }
             }
+            
+            
         }
 
         public void CompressText_AC() //arithmetic coding
@@ -130,7 +134,7 @@ namespace LZW
                 output2.Text += high.ToString() + "  ";
             }
         }
-
+     
         private void input_TextChanged(object sender, EventArgs e)
         {
             button1.Enabled = true ? input.Text != "" : false;

@@ -36,11 +36,11 @@ namespace Hash
 
 
             List<string> h = new List<string>();
-            h.Add("0000000000000000000000000000000000000000000000000000000000000000");
+            h.Add("0000000000000000000000000000000000000000000000000000000000000000"); //64 бита
 
             for(int i = 0; i < (pass.Length / passBlockSize); i++)
             {
-                string enc = (EnCrypt(h[i], passBlocks[i]));
+                string enc = EnCrypt(h[i], passBlocks[i]);
 
                 string newH = XOR(h[i], enc);
 
